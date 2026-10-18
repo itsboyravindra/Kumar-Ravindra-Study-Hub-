@@ -83,6 +83,21 @@
 
   </main>  <footer>
     <p>© 2026 Kumar Ravindra Study Hub</p>
-  </footer>
+  </footer>// 
+  For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyDPObZuWkajCO1TE_eSjCXvThZM7VOGFwY",
+  authDomain: "kumar-ravindra-study-hub.firebaseapp.com",
+  projectId: "kumar-ravindra-study-hub",
+  storageBucket: "kumar-ravindra-study-hub.firebasestorage.app",
+  messagingSenderId: "534647568880",
+  appId: "1:534647568880:web:18e30fcfd519ece759c535",
+  measurementId: "G-N3YPP0S0P0"
+};
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 </body>
 </html>
