@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="hi">
+<!DOCTYPE html>
+<html lang="hi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,7 +36,9 @@
       max-width: 500px;
       border-radius: 12px;
       box-shadow: 0 2px 8px #ccd3e0;
+      text-align: left;
     }
+    .card h2 { text-align: center; }
     button {
       background: #1769ff;
       color: white;
@@ -43,6 +46,13 @@
       padding: 12px 20px;
       border-radius: 8px;
       cursor: pointer;
+      margin: 5px;
+    }
+    select, input {
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin: 5px;
     }
     footer {
       background: #173b75;
@@ -50,124 +60,107 @@
       padding: 15px;
       margin-top: 30px;
     }
+    #sunil-study { text-align: left; }
   </style>
 </head>
 <body>
   <header>
     <h1>Kumar Ravindra Study Hub</h1>
     <p>पढ़ाई करो • खेलो • आगे बढ़ो</p>
-  </header>  <nav>
+  </header>
+  
+  <nav>
     <a href="#notes">Notes</a>
     <a href="#games">Games</a>
     <a href="#leaderboard">Leaderboard</a>
     <a href="#login">Login</a>
-  </nav>  <main>
+    <a href="#sunil-study">Science Game</a>
+  </nav>
+  
+  <main>
     <section class="card" id="notes">
       <h2>📚 Study Notes</h2>
       <p>Class 10th, 11th और 12th के नोट्स यहाँ मिलेंगे।</p>
-    </section><section class="card" id="games">
-  <h2>🎮 Maths & History Games</h2>
-  <p>खेलो और अपनी जानकारी बढ़ाओ।</p>
-  <button onclick="alert('Games जल्द जोड़े जाएँगे!')">Play Games</button>
-</section>
+    </section>
 
-<section class="card" id="leaderboard">
-  <h2>🏆 Live Leaderboard</h2>
-  <p>विद्यार्थियों की रैंक यहाँ दिखाई जाएगी।</p>
-</section>
+    <section class="card" id="games">
+      <h2>🎮 Maths & History Games</h2>
+      <p>खेलो और अपनी जानकारी बढ़ाओ।</p>
+      <button onclick="alert('Games जल्द जोड़े जाएँगे!')">Play Games</button>
+    </section>
 
-<section class="card" id="login">
-  <h2>🔐 Student Login</h2>
-  <p>Signup और Login की सुविधा अगले चरण में जोड़ेंगे।</p>
-</section>
+    <section class="card" id="leaderboard">
+      <h2>🏆 Live Leaderboard</h2>
+      <p>विद्यार्थियों की रैंक यहाँ दिखाई जाएगी।</p>
+    </section>
 
-  </main>  <footer>
+    <section class="card" id="login">
+      <h2>🔐 Student Login</h2>
+      <p>Signup और Login की सुविधा अगले चरण में जोड़ेंगे।</p>
+    </section>
+
+    <!-- Science Game + Daily Streak + the_sunil29 -->
+    <section class="card" id="sunil-study">
+      <h2>🔬 Science Game</h2>
+      <label>कक्षा चुनें:
+        <select id="sg-class">
+          <option value="10">10वीं</option>
+          <option value="11">11वीं</option>
+          <option value="12">12वीं</option>
+        </select>
+      </label>
+      <label>विषय चुनें:
+        <select id="sg-subject">
+          <option>Physics</option>
+          <option>Chemistry</option>
+          <option>Biology</option>
+        </select>
+      </label>
+      <p id="sg-question">प्रकाश संश्लेषण में पौधे कौन-सी गैस लेते हैं?</p>
+      <div id="sg-options"></div>
+      <p id="sg-result" aria-live="polite"></p>
+      <p>⭐ Points: <b id="sg-points">0</b></p>
+      <hr>
+      <h2>🔥 Daily Streak</h2>
+      <p>आज पढ़ाई की? रोज़ पढ़ाई करके अपनी streak बढ़ाओ।</p>
+      <button id="sg-study">आज पढ़ाई पूरी की</button>
+      <p id="sg-streak">Streak: 0 दिन</p>
+      <hr>
+      <h2>🤖 AI Expert: the_sunil29</h2>
+      <p>यहाँ पढ़ाई का सवाल लिखो।</p>
+      <input id="sg-ai-question" placeholder="अपना सवाल लिखो" style="width:90%;padding:10px">
+      <button id="sg-ai-send">सवाल पूछें</button>
+      <p id="sg-ai-answer" aria-live="polite"></p>
+    </section>
+
+  </main>
+  
+  <footer>
     <p>© 2026 Kumar Ravindra Study Hub</p>
-  </footer>//<
-  !-- Science Game + Daily Streak + the_sunil29 -->
-<section id="sunil-study" style="padding:20px;margin:15px;border-radius:12px;background:#eef6ff;color:#172554;font-family:Arial,sans-serif">
-  <h2>🔬 Science Game</h2>
-
-  <label>कक्षा चुनें:
-    <select id="sg-class">
-      <option value="10">10वीं</option>
-      <option value="11">11वीं</option>
-      <option value="12">12वीं</option>
-    </select>
-  </label>
-
-  <label>विषय चुनें:
-    <select id="sg-subject">
-      <option>Physics</option>
-      <option>Chemistry</option>
-      <option>Biology</option>
-    </select>
-  </label>
-
-  <p id="sg-question">प्रकाश संश्लेषण में पौधे कौन-सी गैस लेते हैं?</p>
-  <div id="sg-options"></div>
-  <p id="sg-result" aria-live="polite"></p>
-  <p>⭐ Points: <b id="sg-points">0</b></p>
-
-  <hr>
-  <h2>🔥 Daily Streak</h2>
-  <p>आज पढ़ाई की? रोज़ पढ़ाई करके अपनी streak बढ़ाओ।</p>
-  <button id="sg-study">आज पढ़ाई पूरी की</button>
-  <p id="sg-streak">Streak: 0 दिन</p>
-
-  <hr>
-  <h2>🤖 AI Expert: the_sunil29</h2>
-  <p>यहाँ पढ़ाई का सवाल लिखो। अभी यह डेमो है, असली AI से जुड़ा नहीं है।</p>
-  <input id="sg-ai-question" placeholder="अपना सवाल लिखो" style="width:90%;padding:10px">
-  <button id="sg-ai-send">सवाल पूछें</button>
-  <p id="sg-ai-answer" aria-live="polite"></p>
-</section>
+  </footer>
 
 <script>
 (() => {
   const root = document.getElementById('sunil-study');
   if (root.dataset.ready) return;
   root.dataset.ready = '1';
-
   const bank = {
-    '10|Physics': [
-      ['बल की SI इकाई क्या है?', ['जूल','न्यूटन','वाट'], 1],
-      ['प्रकाश किस प्रकार की तरंग है?', ['विद्युतचुंबकीय','ध्वनि','जल तरंग'], 0]
-    ],
-    '10|Chemistry': [
-      ['पानी का रासायनिक सूत्र क्या है?', ['CO₂','H₂O','O₂'], 1]
-    ],
-    '10|Biology': [
-      ['प्रकाश संश्लेषण में पौधे कौन-सी गैस लेते हैं?', ['ऑक्सीजन','नाइट्रोजन','कार्बन डाइऑक्साइड'], 2]
-    ],
-    '11|Physics': [
-      ['बल की SI इकाई क्या है?', ['जूल','न्यूटन','वाट'], 1]
-    ],
-    '11|Chemistry': [
-      ['परमाणु का केंद्र क्या कहलाता है?', ['नाभिक','कक्षा','आयन'], 0]
-    ],
-    '11|Biology': [
-      ['कोशिका का ऊर्जा-गृह किसे कहते हैं?', ['राइबोसोम','माइटोकॉन्ड्रिया','नाभिक'], 1]
-    ],
-    '12|Physics': [
-      ['विद्युत धारा की SI इकाई क्या है?', ['वोल्ट','ओम','एम्पियर'], 2]
-    ],
-    '12|Chemistry': [
-      ['pH 7 वाला विलयन सामान्यतः कैसा होता है?', ['अम्लीय','उदासीन','क्षारीय'], 1]
-    ],
-    '12|Biology': [
-      ['DNA का पूरा नाम क्या है?', ['डीऑक्सीराइबोन्यूक्लिक अम्ल','अमीनो अम्ल','फैटी अम्ल'], 0]
-    ]
+    '10|Physics': [['बल की SI इकाई क्या है?', ['जूल','न्यूटन','वाट'], 1],['प्रकाश किस प्रकार की तरंग है?', ['विद्युतचुंबकीय','ध्वनि','जल तरंग'], 0]],
+    '10|Chemistry': [['पानी का रासायनिक सूत्र क्या है?', ['CO₂','H₂O','O₂'], 1]],
+    '10|Biology': [['प्रकाश संश्लेषण में पौधे कौन-सी गैस लेते हैं?', ['ऑक्सीजन','नाइट्रोजन','कार्बन डाइऑक्साइड'], 2]],
+    '11|Physics': [['बल की SI इकाई क्या है?', ['जूल','न्यूटन','वाट'], 1]],
+    '11|Chemistry': [['परमाणु का केंद्र क्या कहलाता है?', ['नाभिक','कक्षा','आयन'], 0]],
+    '11|Biology': [['कोशिका का ऊर्जा-गृह किसे कहते हैं?', ['राइबोसोम','माइटोकॉन्ड्रिया','नाभिक'], 1]],
+    '12|Physics': [['विद्युत धारा की SI इकाई क्या है?', ['वोल्ट','ओम','एम्पियर'], 2]],
+    '12|Chemistry': [['pH 7 वाला विलयन सामान्यतः कैसा होता है?', ['अम्लीय','उदासीन','क्षारीय'], 1]],
+    '12|Biology': [['DNA का पूरा नाम क्या है?', ['डीऑक्सीराइबोन्यूक्लिक अम्ल','अमीनो अम्ल','फैटी अम्ल'], 0]]
   };
-
-  let index = 0;
-  let points = 0;
+  let index = 0; let points = 0;
   const classEl = root.querySelector('#sg-class');
   const subjectEl = root.querySelector('#sg-subject');
   const questionEl = root.querySelector('#sg-question');
   const optionsEl = root.querySelector('#sg-options');
   const resultEl = root.querySelector('#sg-result');
-
   function renderQuestion() {
     const list = bank[classEl.value + '|' + subjectEl.value] || [];
     if (!list.length) return;
@@ -178,69 +171,37 @@
     resultEl.textContent = '';
     q[1].forEach((option, i) => {
       const button = document.createElement('button');
-      button.type = 'button';
-      button.textContent = option;
-      button.style.cssText = 'display:block;margin:8px 0;padding:10px';
+      button.type = 'button'; button.textContent = option;
+      button.style.cssText = 'display:block;margin:8px 0;padding:10px;width:100%';
       button.addEventListener('click', () => {
         optionsEl.querySelectorAll('button').forEach(b => b.disabled = true);
         if (i === q[2]) {
-          points++;
-          root.querySelector('#sg-points').textContent = points;
+          points++; root.querySelector('#sg-points').textContent = points;
           resultEl.textContent = 'सही जवाब! +1 point 🎉';
-        } else {
-          resultEl.textContent = 'गलत जवाब। सही उत्तर: ' + q[1][q[2]];
-        }
+        } else { resultEl.textContent = 'गलत जवाब। सही उत्तर: ' + q[1][q[2]]; }
         const next = document.createElement('button');
         next.textContent = 'अगला सवाल';
-        next.addEventListener('click', () => {
-          index++;
-          renderQuestion();
-        });
+        next.addEventListener('click', () => { index++; renderQuestion(); });
         optionsEl.append(next);
       });
       optionsEl.append(button);
     });
   }
-
   classEl.addEventListener('change', renderQuestion);
   subjectEl.addEventListener('change', renderQuestion);
   renderQuestion();
-
-  const today = () => {
-    const d = new Date();
-    return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
-  };
-  const yesterday = () => {
-    const d = new Date();
-    d.setDate(d.getDate()-1);
-    return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
-  };
-
+  const today = () => { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0'); };
+  const yesterday = () => { const d = new Date(); d.setDate(d.getDate()-1); return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0'); };
   let streak = Number(localStorage.getItem('sunilStreak') || 0);
   let last = localStorage.getItem('sunilLastStudy') || '';
   const streakEl = root.querySelector('#sg-streak');
   const studyButton = root.querySelector('#sg-study');
-
-  function showStreak() {
-    streakEl.textContent = 'Streak: ' + streak + ' दिन';
-    studyButton.disabled = last === today();
-    if (studyButton.disabled) studyButton.textContent = 'आज की पढ़ाई दर्ज हो चुकी है';
-  }
-  studyButton.addEventListener('click', () => {
-    if (last === today()) return;
-    streak = last === yesterday() ? streak + 1 : 1;
-    last = today();
-    localStorage.setItem('sunilStreak', String(streak));
-    localStorage.setItem('sunilLastStudy', last);
-    showStreak();
-  });
+  function showStreak() { streakEl.textContent = 'Streak: ' + streak + ' दिन'; studyButton.disabled = last === today(); if (studyButton.disabled) studyButton.textContent = 'आज की पढ़ाई दर्ज हो चुकी है'; }
+  studyButton.addEventListener('click', () => { if (last === today()) return; streak = last === yesterday() ? streak + 1 : 1; last = today(); localStorage.setItem('sunilStreak', String(streak)); localStorage.setItem('sunilLastStudy', last); showStreak(); });
   showStreak();
-
   root.querySelector('#sg-ai-send').addEventListener('click', () => {
     const q = root.querySelector('#sg-ai-question').value.trim();
-    root.querySelector('#sg-ai-answer').textContent = q
-      ? 'the_sunil29 AI Expert अभी कनेक्ट नहीं है। असली जवाबों के लिए सुरक्षित AI API कनेक्शन सेट करना होगा।'
-      : 'पहले अपना सवाल लिखो।';
+    root.querySelector('#sg-ai-answer').textContent = q ? 'the_sunil29 AI Expert अभी कनेक्ट नहीं है। असली जवाबों के लिए सुरक्षित AI API कनेक्शन सेट करना होगा।' : 'पहले अपना सवाल लिखो।';
   });
 })();
 </script>
