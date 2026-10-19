@@ -1,209 +1,174 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kumar Ravindra Study Hub</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f0f4ff;
-      color: #222;
-      text-align: center;
-    }
-    header {
-      background: #173b75;
-      color: white;
-      padding: 25px 10px;
-    }
-    nav {
-      background: #102b55;
-      padding: 12px;
-    }
-    nav a {
-      color: white;
-      margin: 8px;
-      text-decoration: none;
-    }
-    main {
-      padding: 20px;
-    }
-    .card {
-      background: white;
-      padding: 20px;
-      margin: 15px auto;
-      max-width: 500px;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px #ccd3e0;
-      text-align: left;
-    }
-    .card h2 { text-align: center; }
-    button {
-      background: #1769ff;
-      color: white;
-      border: 0;
-      padding: 12px 20px;
-      border-radius: 8px;
-      cursor: pointer;
-      margin: 5px;
-    }
-    select, input {
-      padding: 8px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      margin: 5px;
-    }
-    footer {
-      background: #173b75;
-      color: white;
-      padding: 15px;
-      margin-top: 30px;
-    }
-    #sunil-study { text-align: left; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kumar Ravindra Study Hub - Padho Seekho Aage Badho</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root{--bg:#070f1e;--sidebar:#0e1c33;--card:#111e36;--card2:#162a4f;--border:#1e3a5f;--blue:#3b82ff;--purple:#7c3aed;--green:#10b981;--orange:#f59e0b;--text:#e2e8f0;--muted:#94a3b8}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,Arial,sans-serif}
+body{background:var(--bg);color:var(--text);display:flex;min-height:100vh}
+.sidebar{width:240px;background:var(--sidebar);padding:18px 12px;position:sticky;top:0;height:100vh;overflow:auto;border-right:1px solid var(--border)}
+.logo{display:flex;gap:10px;align-items:center;font-weight:800;font-size:18px;line-height:1.1;margin-bottom:20px}
+.logo .icon{width:42px;height:42px;background:radial-gradient(circle at 30% 30%,#3b82ff,#1e3a8a);border-radius:50%;display:grid;place-items:center}
+.menu a{display:flex;gap:12px;align-items:center;padding:12px 14px;border-radius:12px;color:var(--muted);text-decoration:none;margin:3px 0;cursor:pointer;transition:.2s;position:relative}
+.menu a.active,.menu a:hover{background:linear-gradient(90deg,#6d28d9,#7c3aed);color:white;transform:translateX(3px)}
+.menu a .count{margin-left:auto;background:#ef4444;color:white;font-size:11px;padding:2px 7px;border-radius:999px}
+.quote{margin-top:20px;background:linear-gradient(180deg,#172a4f,#111e36);border:1px solid var(--border);border-radius:16px;padding:16px;text-align:center}
+.btn{border:0;padding:10px 16px;border-radius:999px;color:white;cursor:pointer;font-weight:600}
+.btn-blue{background:#2563eb}.btn-purple{background:#7c3aed}.btn-green{background:#059669}.btn-orange{background:#d97706}
+.main{flex:1;padding:16px;display:grid;grid-template-columns:1fr 340px;gap:16px;align-content:start}
+.topbar{grid-column:1/-1;background:var(--sidebar);border:1px solid var(--border);border-radius:14px;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.topbar .search{background:#0a1932;border:1px solid var(--border);padding:9px 14px;border-radius:999px;color:white;width:320px;outline:none}
+.topbar .profile{display:flex;gap:10px;align-items:center}
+.page{display:none;grid-column:1/-1}
+.page.active{display:grid;grid-template-columns:1fr 340px;gap:16px}
+.welcome{grid-column:1/-1;background:linear-gradient(90deg,#0f2a5e 0%, #1e3a8a 40%, #0b1020 100%);border-radius:20px;padding:22px;position:relative;overflow:hidden;border:1px solid var(--border);min-height:190px}
+.welcome::after{content:'';position:absolute;right:0;top:0;width:45%;height:100%;background:url('https://images.unsplash.com/photo-1519681393784-d120267933ba?w=600') center/cover;opacity:0.5;mask-image:linear-gradient(to right,transparent,black)}
+.welcome h1{font-size:32px;position:relative;z-index:2}.welcome p{position:relative;z-index:2;color:#cbd5e1;margin-top:6px}
+.stats{display:flex;gap:12px;margin-top:16px;flex-wrap:wrap;position:relative;z-index:2}
+.stat{background:rgba(0,0,0,.45);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.1);padding:10px 14px;border-radius:12px;display:flex;gap:8px;align-items:center;font-size:13px}
+.cards4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;grid-column:1}
+.card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:16px;text-align:center}
+.card h3{margin:8px 0 4px}.card p{color:var(--muted);font-size:12px;min-height:28px}
+.leaderboard{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:14px;grid-column:1}
+.leader-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.leader-row{display:grid;grid-template-columns:40px 1fr 70px 110px;align-items:center;padding:10px 8px;border-radius:10px}
+.leader-row:hover{background:#0f2443}
+.badge{padding:3px 8px;border-radius:999px;font-size:11px;border:1px solid var(--border)}
+.right{grid-column:2;grid-row:2/5;display:flex;flex-direction:column;gap:14px}
+.box{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:14px}
+.chat-item{display:flex;gap:10px;padding:8px;border-radius:10px;cursor:pointer}.chat-item:hover{background:#0f2443}
+.dot{width:8px;height:8px;border-radius:50%;background:#10b981}
+.quick{display:grid;grid-template-columns:1fr;gap:14px}
+.qcard{border-radius:16px;padding:14px;border:1px solid var(--border)}
+#sunil-study{grid-column:1/-1;background:var(--card);border:1px solid var(--border);border-radius:18px;padding:16px}
+#sunil-study select,#sunil-study input{background:#0a1932;border:1px solid var(--border);color:white;padding:10px;border-radius:10px}
+.hidden{display:none!important}
+@media(max-width:1000px){body{flex-direction:column}.sidebar{width:100%;height:auto;position:relative}.main,.page.active{grid-template-columns:1fr}.right,.cards4{grid-column:1}.topbar .search{width:100%}}
+</style>
 </head>
 <body>
-  <header>
-    <h1>Kumar Ravindra Study Hub</h1>
-    <p>पढ़ाई करो • खेलो • आगे बढ़ो</p>
-  </header>
-  
-  <nav>
-    <a href="#notes">Notes</a>
-    <a href="#games">Games</a>
-    <a href="#leaderboard">Leaderboard</a>
-    <a href="#login">Login</a>
-    <a href="#sunil-study">Science Game</a>
-  </nav>
-  
-  <main>
-    <section class="card" id="notes">
-      <h2>📚 Study Notes</h2>
-      <p>Class 10th, 11th और 12th के नोट्स यहाँ मिलेंगे।</p>
-    </section>
+<div class="sidebar">
+  <div class="logo"><div class="icon"><i class="fa-solid fa-book-open"></i></div><div>Kumar Ravindra<br><small style="font-weight:400;color:var(--muted);font-size:12px">Study Hub</small></div></div>
+  <div class="menu">
+    <a data-page="home" class="active"><i class="fa-solid fa-house"></i> Home</a>
+    <a data-page="study"><i class="fa-solid fa-book"></i> Study</a>
+    <a data-page="games"><i class="fa-solid fa-gamepad"></i> Games</a>
+    <a data-page="chat"><i class="fa-solid fa-comments"></i> Chat <span class="count">3</span></a>
+    <a data-page="groups"><i class="fa-solid fa-users"></i> Groups</a>
+    <a data-page="leaderboard-page"><i class="fa-solid fa-trophy"></i> Leaderboard</a>
+    <a data-page="rare"><i class="fa-solid fa-book-bookmark"></i> Rare Books</a>
+    <a data-page="profile"><i class="fa-solid fa-user"></i> My Profile</a>
+    <a data-page="settings"><i class="fa-solid fa-gear"></i> Settings</a>
+  </div>
+  <div class="quote">
+    <div style="font-size:34px">🎓</div>
+    <p style="font-size:14px;font-weight:700;margin:8px 0">Small steps every day lead to big dreams!</p>
+    <button class="btn btn-purple" onclick="go('study')">Keep Going! <i class="fa-solid fa-arrow-right"></i></button>
+  </div>
+</div>
 
-    <section class="card" id="games">
-      <h2>🎮 Maths & History Games</h2>
-      <p>खेलो और अपनी जानकारी बढ़ाओ।</p>
-      <button onclick="alert('Games जल्द जोड़े जाएँगे!')">Play Games</button>
-    </section>
+<div class="main">
+  <div class="topbar">
+    <div><b>Padho • Seekho • Aage Badho</b> <i class="fa-solid fa-rocket" style="color:var(--orange)"></i></div>
+    <input class="search" id="globalSearch" placeholder="Search friends, groups, or anything...">
+    <div class="profile"><i class="fa-solid fa-bell"></i><img src="https://i.pravatar.cc/32?img=12" style="border-radius:50%"><div><b>RaviKumar</b><div style="font-size:11px;color:#10b981"><i class="fa-solid fa-circle" style="font-size:8px"></i> Online</div></div></div>
+  </div>
 
-    <section class="card" id="leaderboard">
-      <h2>🏆 Live Leaderboard</h2>
-      <p>विद्यार्थियों की रैंक यहाँ दिखाई जाएगी।</p>
-    </section>
+  <!-- HOME PAGE -->
+  <div id="page-home" class="page active">
+    <div class="welcome">
+      <h2>Welcome Back, <i class="fa-solid fa-crown" style="color:gold"></i><br><span style="font-size:36px">RaviKumar!</span></h2>
+      <p>Knowledge is the real power. Keep learning!</p>
+      <div class="stats">
+        <div class="stat"><i class="fa-solid fa-star" style="color:gold"></i> Total Points <b id="totalPoints">1250</b></div>
+        <div class="stat"><i class="fa-solid fa-book" style="color:#a78bfa"></i> Books Unlocked <b>2</b></div>
+        <div class="stat"><i class="fa-solid fa-fire" style="color:orange"></i> Current Streak <b id="homeStreak">5 days</b></div>
+      </div>
+    </div>
+    <div class="right">
+      <div class="box" id="friendsChatBox"><div style="display:flex;justify-content:space-between"><h3><i class="fa-solid fa-comment-dots"></i> Friends Chat</h3><span style="color:#10b981;font-size:12px"><i class="fa-solid fa-circle" style="font-size:8px"></i> Online</span></div>
+        <div style="margin:10px 0;display:flex;gap:6px"><button class="btn btn-purple" style="flex:1" onclick="filterChat('private')">Private</button><button class="btn" style="flex:1;background:var(--card2)" onclick="filterChat('groups')">Groups</button><button class="btn" style="flex:1;background:var(--card2)" onclick="filterChat('search')">Search</button></div>
+        <input id="chatSearch" placeholder="Search friends..." style="width:100%;background:#0a1932;border:1px solid var(--border);padding:8px;border-radius:10px;color:white;margin-bottom:8px">
+        <div id="chatList"></div>
+        <button class="btn btn-purple" style="width:100%;margin-top:8px" onclick="go('chat')"><i class="fa-solid fa-paper-plane"></i> New Message</button>
+      </div>
+      <div class="box"><h3><i class="fa-solid fa-book"></i> Current Rare Book</h3><div style="display:flex;gap:12px;margin-top:10px"><img src="https://images.unsplash.com/photo-1592496431122-2349e0fbc666?w=100" style="width:80px;border-radius:10px"><div><b>Advanced Mathematics</b><p style="font-size:12px;color:var(--muted)">Unlock secrets of higher math concepts.</p></div></div><button class="btn btn-purple" style="width:100%;margin-top:10px" onclick="go('rare')">View Details →</button></div>
+    </div>
+    <div class="cards4">
+      <div class="card"><div style="font-size:36px">📘</div><h3>Study</h3><p>Notes, PDFs, Video Lectures & More</p><button class="btn btn-blue" onclick="go('study')">Go to Study →</button></div>
+      <div class="card"><div style="font-size:36px">🎮</div><h3>Games</h3><p>Maths & History Challenges</p><button class="btn btn-purple" onclick="go('games')">Play Now →</button></div>
+      <div class="card"><div style="font-size:36px">💬</div><h3>Chat</h3><p>Make Friends & Discuss</p><button class="btn btn-green" onclick="go('chat')">Open Chat →</button></div>
+      <div class="card"><div style="font-size:36px">🏆</div><h3>Leaderboard</h3><p>Compete & Win Rare Books</p><button class="btn btn-orange" onclick="go('leaderboard-page')">View Leaderboard →</button></div>
+    </div>
+    <div class="leaderboard">
+      <div class="leader-head"><h3><i class="fa-solid fa-trophy" style="color:gold"></i> Weekly Leaderboard</h3><button class="btn" style="background:var(--card2)">Week 1</button></div>
+      <div id="leaderboardRows"></div>
+      <div style="margin-top:10px;background:linear-gradient(90deg,#1e293b,#0f172a);padding:10px;border-radius:10px;display:flex;justify-content:space-between"><span><i class="fa-solid fa-crown" style="color:gold"></i> Rank 1 will unlock this week's Rare Book!</span><span>📘</span></div>
+    </div>
+    <div class="box" style="grid-column:2"><h3><i class="fa-solid fa-gamepad"></i> Quick Games</h3>
+      <div class="quick" style="margin-top:10px">
+        <div class="qcard" style="background:linear-gradient(135deg,#0f2a3a,#0a1932)"><h4>Maths Challenge</h4><p style="font-size:12px;color:var(--muted)">Solve math problems and earn points!</p><button class="btn btn-purple" onclick="go('games');setTimeout(()=>startMaths(),300)">Play Now</button></div>
+        <div class="qcard" style="background:linear-gradient(135deg,#3a2510,#1a140a)"><h4>History Quiz</h4><p style="font-size:12px;color:var(--muted)">Test your knowledge of Indian History!</p><button class="btn btn-orange" onclick="go('games')">Play Now</button></div>
+      </div>
+    </div>
+  </div>
 
-    <section class="card" id="login">
-      <h2>🔐 Student Login</h2>
-      <p>Signup और Login की सुविधा अगले चरण में जोड़ेंगे।</p>
-    </section>
+  <!-- STUDY PAGE -->
+  <div id="page-study" class="page"><div style="grid-column:1/-1" class="box"><h2>📚 Study Zone - Class 10,11,12</h2><p style="color:var(--muted)">Select class and subject to get notes</p><div style="margin-top:10px"><select id="studyClass"><option value="10">Class 10</option><option value="11">Class 11</option><option value="12">Class 12</option></select> <select id="studySub"><option>Physics</option><option>Chemistry</option><option>Biology</option><option>Maths</option><option>History</option></select> <button class="btn btn-blue" onclick="loadNotes()">Load Notes</button></div><div id="notesArea" style="margin-top:15px"></div></div></div>
 
-    <!-- Science Game + Daily Streak + the_sunil29 -->
-    <section class="card" id="sunil-study">
-      <h2>🔬 Science Game</h2>
-      <label>कक्षा चुनें:
-        <select id="sg-class">
-          <option value="10">10वीं</option>
-          <option value="11">11वीं</option>
-          <option value="12">12वीं</option>
-        </select>
-      </label>
-      <label>विषय चुनें:
-        <select id="sg-subject">
-          <option>Physics</option>
-          <option>Chemistry</option>
-          <option>Biology</option>
-        </select>
-      </label>
-      <p id="sg-question">प्रकाश संश्लेषण में पौधे कौन-सी गैस लेते हैं?</p>
-      <div id="sg-options"></div>
-      <p id="sg-result" aria-live="polite"></p>
-      <p>⭐ Points: <b id="sg-points">0</b></p>
-      <hr>
-      <h2>🔥 Daily Streak</h2>
-      <p>आज पढ़ाई की? रोज़ पढ़ाई करके अपनी streak बढ़ाओ।</p>
-      <button id="sg-study">आज पढ़ाई पूरी की</button>
-      <p id="sg-streak">Streak: 0 दिन</p>
-      <hr>
-      <h2>🤖 AI Expert: the_sunil29</h2>
-      <p>यहाँ पढ़ाई का सवाल लिखो।</p>
-      <input id="sg-ai-question" placeholder="अपना सवाल लिखो" style="width:90%;padding:10px">
-      <button id="sg-ai-send">सवाल पूछें</button>
-      <p id="sg-ai-answer" aria-live="polite"></p>
-    </section>
+  <!-- GAMES PAGE -->
+  <div id="page-games" class="page"><div style="grid-column:1/-1" class="box"><h2>🎮 All Games</h2></div>
+    <section id="sunil-study"><h2>🔬 Science Game - the_sunil29 Special</h2><br><label>कक्षा: <select id="sg-class"><option value="10">10वीं</option><option value="11">11वीं</option><option value="12">12वीं</option></select></label> <label>विषय: <select id="sg-subject"><option>Physics</option><option>Chemistry</option><option>Biology</option></select></label><p id="sg-question" style="margin:15px 0;font-weight:bold;font-size:18px"></p><div id="sg-options"></div><p id="sg-result" style="margin:10px 0;font-weight:bold"></p><p>⭐ Points: <b id="sg-points">0</b> | <span id="sg-streak">Streak: 0</span> <button id="sg-study" class="btn btn-green">आज पढ़ाई पूरी की</button></p><hr style="margin:15px 0;border-color:var(--border)"><h3>🤖 AI Expert</h3><input id="sg-ai-question" placeholder="अपना सवाल लिखो" style="width:70%;padding:10px;margin-top:8px"><button id="sg-ai-send" class="btn btn-blue">सवाल पूछें</button><p id="sg-ai-answer" style="margin-top:8px"></p></section>
+    <div class="box"><h3>Maths Challenge</h3><p id="mathsQ">Click Play to start</p><div id="mathsOpt"></div><button class="btn btn-purple" onclick="startMaths()">New Maths Q</button></div>
+  </div>
 
-  </main>
-  
-  <footer>
-    <p>© 2026 Kumar Ravindra Study Hub</p>
-  </footer>
+  <!-- OTHER PAGES -->
+  <div id="page-chat" class="page"><div style="grid-column:1/-1" class="box"><h2>💬 Chat Center</h2><div id="fullChat"></div><div style="display:flex;gap:8px;margin-top:10px"><input id="msgInput" placeholder="Type message..." style="flex:1;background:#0a1932;border:1px solid var(--border);padding:10px;border-radius:10px;color:white"><button class="btn btn-blue" onclick="sendMsg()"><i class="fa-solid fa-paper-plane"></i></button></div></div></div>
+  <div id="page-groups" class="page"><div style="grid-column:1/-1" class="box"><h2>👥 Groups</h2><div id="groupList"></div><button class="btn btn-purple" style="margin-top:10px" onclick="createGroup()"><i class="fa-solid fa-plus"></i> Create Group</button></div></div>
+  <div id="page-leaderboard-page" class="page"><div style="grid-column:1/-1" class="box"><h2>🏆 Full Leaderboard</h2><div id="fullLeader"></div></div></div>
+  <div id="page-rare" class="page"><div style="grid-column:1/-1" class="box"><h2>📚 Rare Books Collection</h2><div id="rareBooks" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-top:12px"></div></div></div>
+  <div id="page-profile" class="page"><div style="grid-column:1/-1" class="box"><h2>👤 My Profile - RaviKumar</h2><p>Total Points: <span id="pPoints">1250</span> | Streak: <span id="pStreak">5</span> days</p><p style="margin-top:10px">Username: the_sunil29</p><button class="btn btn-blue" onclick="alert('Profile edit coming soon!')">Edit Profile</button></div></div>
+  <div id="page-settings" class="page"><div style="grid-column:1/-1" class="box"><h2>⚙️ Settings</h2><label><input type="checkbox" checked> Dark Mode</label><br><br><button class="btn" style="background:#ef4444" onclick="localStorage.clear();location.reload()">Reset All Data</button></div></div>
+</div>
 
 <script>
-(() => {
-  const root = document.getElementById('sunil-study');
-  if (root.dataset.ready) return;
-  root.dataset.ready = '1';
-  const bank = {
-    '10|Physics': [['बल की SI इकाई क्या है?', ['जूल','न्यूटन','वाट'], 1],['प्रकाश किस प्रकार की तरंग है?', ['विद्युतचुंबकीय','ध्वनि','जल तरंग'], 0]],
-    '10|Chemistry': [['पानी का रासायनिक सूत्र क्या है?', ['CO₂','H₂O','O₂'], 1]],
-    '10|Biology': [['प्रकाश संश्लेषण में पौधे कौन-सी गैस लेते हैं?', ['ऑक्सीजन','नाइट्रोजन','कार्बन डाइऑक्साइड'], 2]],
-    '11|Physics': [['बल की SI इकाई क्या है?', ['जूल','न्यूटन','वाट'], 1]],
-    '11|Chemistry': [['परमाणु का केंद्र क्या कहलाता है?', ['नाभिक','कक्षा','आयन'], 0]],
-    '11|Biology': [['कोशिका का ऊर्जा-गृह किसे कहते हैं?', ['राइबोसोम','माइटोकॉन्ड्रिया','नाभिक'], 1]],
-    '12|Physics': [['विद्युत धारा की SI इकाई क्या है?', ['वोल्ट','ओम','एम्पियर'], 2]],
-    '12|Chemistry': [['pH 7 वाला विलयन सामान्यतः कैसा होता है?', ['अम्लीय','उदासीन','क्षारीय'], 1]],
-    '12|Biology': [['DNA का पूरा नाम क्या है?', ['डीऑक्सीराइबोन्यूक्लिक अम्ल','अमीनो अम्ल','फैटी अम्ल'], 0]]
-  };
-  let index = 0; let points = 0;
-  const classEl = root.querySelector('#sg-class');
-  const subjectEl = root.querySelector('#sg-subject');
-  const questionEl = root.querySelector('#sg-question');
-  const optionsEl = root.querySelector('#sg-options');
-  const resultEl = root.querySelector('#sg-result');
-  function renderQuestion() {
-    const list = bank[classEl.value + '|' + subjectEl.value] || [];
-    if (!list.length) return;
-    index = index % list.length;
-    const q = list[index];
-    questionEl.textContent = q[0];
-    optionsEl.replaceChildren();
-    resultEl.textContent = '';
-    q[1].forEach((option, i) => {
-      const button = document.createElement('button');
-      button.type = 'button'; button.textContent = option;
-      button.style.cssText = 'display:block;margin:8px 0;padding:10px;width:100%';
-      button.addEventListener('click', () => {
-        optionsEl.querySelectorAll('button').forEach(b => b.disabled = true);
-        if (i === q[2]) {
-          points++; root.querySelector('#sg-points').textContent = points;
-          resultEl.textContent = 'सही जवाब! +1 point 🎉';
-        } else { resultEl.textContent = 'गलत जवाब। सही उत्तर: ' + q[1][q[2]]; }
-        const next = document.createElement('button');
-        next.textContent = 'अगला सवाल';
-        next.addEventListener('click', () => { index++; renderQuestion(); });
-        optionsEl.append(next);
-      });
-      optionsEl.append(button);
-    });
-  }
-  classEl.addEventListener('change', renderQuestion);
-  subjectEl.addEventListener('change', renderQuestion);
-  renderQuestion();
-  const today = () => { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0'); };
-  const yesterday = () => { const d = new Date(); d.setDate(d.getDate()-1); return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0'); };
-  let streak = Number(localStorage.getItem('sunilStreak') || 0);
-  let last = localStorage.getItem('sunilLastStudy') || '';
-  const streakEl = root.querySelector('#sg-streak');
-  const studyButton = root.querySelector('#sg-study');
-  function showStreak() { streakEl.textContent = 'Streak: ' + streak + ' दिन'; studyButton.disabled = last === today(); if (studyButton.disabled) studyButton.textContent = 'आज की पढ़ाई दर्ज हो चुकी है'; }
-  studyButton.addEventListener('click', () => { if (last === today()) return; streak = last === yesterday() ? streak + 1 : 1; last = today(); localStorage.setItem('sunilStreak', String(streak)); localStorage.setItem('sunilLastStudy', last); showStreak(); });
-  showStreak();
-  root.querySelector('#sg-ai-send').addEventListener('click', () => {
-    const q = root.querySelector('#sg-ai-question').value.trim();
-    root.querySelector('#sg-ai-answer').textContent = q ? 'the_sunil29 AI Expert अभी कनेक्ट नहीं है। असली जवाबों के लिए सुरक्षित AI API कनेक्शन सेट करना होगा।' : 'पहले अपना सवाल लिखो।';
-  });
-})();
+function go(page){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('page-'+page).classList.add('active');document.querySelectorAll('.menu a').forEach(a=>a.classList.remove('active'));document.querySelector(`[data-page="${page}"]`)?.classList.add('active');window.scrollTo(0,0)}
+document.querySelectorAll('.menu a').forEach(a=>a.addEventListener('click',()=>go(a.dataset.page)));
+document.getElementById('globalSearch').addEventListener('input',e=>{const q=e.target.value.toLowerCase();if(q)go('study');document.getElementById('studySub').value='Physics';});
+
+// Data
+let points=Number(localStorage.getItem('sunilPoints')||1250);
+let streak=Number(localStorage.getItem('sunilStreak')||5);
+let last=localStorage.getItem('sunilLastStudy')||'';
+const friends=[{n:'Aman',m:'Bro kal ka test kaisa tha?',t:'10:24'},{n:'Priya',m:'Thanks for the notes!',t:'09:46'},{n:'Rohit',m:'Group me join kar lo',t:'08:32'},{n:'Sneha',m:'Okay',t:'Yesterday'}];
+const leaderboard=[{name:'RaviKumar',pts:1250},{name:'Aman',pts:980},{name:'Priya',pts:870},{name:'Rohit',pts:760},{name:'Sneha',pts:720},{name:'Sahil',pts:680},{name:'Neha',pts:640},{name:'Akash',pts:590}];
+
+function renderChat(){const c=document.getElementById('chatList');c.innerHTML='';friends.forEach(f=>{c.innerHTML+=`<div class="chat-item" onclick="go('chat')"><img src="https://i.pravatar.cc/32?u=${f.n}" style="border-radius:50%"><div style="flex:1"><b style="font-size:13px">${f.n}</b><div style="font-size:12px;color:var(--muted)">${f.m}</div></div><div style="font-size:11px;color:var(--muted)">${f.t} <span class="dot" style="display:inline-block;margin-left:4px"></span></div></div>`})}
+function renderLeader(){const r=document.getElementById('leaderboardRows');const fr=document.getElementById('fullLeader');r.innerHTML='';fr.innerHTML='';leaderboard.forEach((u,i)=>{const row=`<div class="leader-row" style="${i==0?'background:#1e293b':''}"><span>${i==0?'🥇':i==1?'🥈':i==2?'🥉':i+1}</span><span style="display:flex;gap:8px;align-items:center"><img src="https://i.pravatar.cc/24?u=${u.name}" style="border-radius:50%"> ${u.name}</span><span>${u.pts}</span><span><span class="badge">${i==0?'👑 Top Performer':i==1?'Silver':i==2?'Bronze':'-'}</span></span></div>`;r.innerHTML+=row;fr.innerHTML+=row});}
+function renderGroups(){document.getElementById('groupList').innerHTML=['Study Warriors (12 members) - Active now','Math Legends (8)','History Buffs (10)','General Discussion (15)'].map(g=>`<div class="chat-item"><i class="fa-solid fa-users"></i> ${g}</div>`).join('')}
+function renderRare(){const books=[{t:'Basic Mathematics',u:true},{t:'Indian History Facts',u:true},{t:'Science Special',u:false},{t:'Ancient Mathematics',u:false},{t:'Advanced Mathematics',u:false}];document.getElementById('rareBooks').innerHTML=books.map(b=>`<div class="card"><div style="font-size:40px">${b.u?'📘':'📕'}</div><b>${b.t}</b><div style="margin-top:8px">${b.u?'<span style="color:#10b981">Unlocked ✅</span>':'<span style="color:#ef4444"><i class="fa-solid fa-lock"></i> Locked</span>'}</div><button class="btn ${b.u?'btn-blue':'btn-purple'}" style="width:100%;margin-top:8px" onclick="${b.u?'alert(\'Opening '+b.t+'\')':'go(\'leaderboard-page\')'}">${b.u?'Open':'Unlock Rank 1'}</button></div>`).join('')}
+renderChat();renderLeader();renderGroups();renderRare();
+
+// Study
+function loadNotes(){const c=document.getElementById('studyClass').value,s=document.getElementById('studySub').value;document.getElementById('notesArea').innerHTML=`<div class="box"><h3>${s} - Class ${c}</h3><p>📄 ${s} ke notes yahan ayenge. PDF, Video Lecture, Important Questions.</p><button class="btn btn-green" onclick="addPoints(10)">Read & Earn +10 Points</button></div>`}
+
+// Games - Science
+const bank={'10|Physics':[['बल की SI इकाई क्या है?', ['जूल','न्यूटन','वाट'],1]],'10|Chemistry':[['पानी का सूत्र क्या है?', ['CO₂','H₂O','O₂'],1]],'10|Biology':[['प्रकाश संश्लेषण में पौधे कौन-सी गैस लेते हैं?', ['O₂','N₂','CO₂'],2]],'11|Physics':[['बल की SI इकाई क्या है?', ['जूल','न्यूटन','वाट'],1]],'11|Chemistry':[['परमाणु का केंद्र क्या कहलाता है?', ['नाभिक','कक्षा','आयन'],0]],'11|Biology':[['कोशिका का ऊर्जा-गृह किसे कहते हैं?', ['राइबोसोम','माइटोकॉन्ड्रिया','नाभिक'],1]],'12|Physics':[['विद्युत धारा की SI इकाई क्या है?', ['वोल्ट','ओम','एम्पियर'],2]],'12|Chemistry':[['pH 7 वाला विलयन कैसा होता है?', ['अम्लीय','उदासीन','क्षारीय'],1]],'12|Biology':[['DNA का पूरा नाम क्या है?', ['डीऑक्सीराइबोन्यूक्लिक अम्ल','अमीनो अम्ल','फैटी अम्ल'],0]]};
+let idx=0;const root=document.getElementById('sunil-study');function renderQ(){const list=bank[document.getElementById('sg-class').value+'|'+document.getElementById('sg-subject').value]||[];if(!list.length)return;idx=idx%list.length;const q=list[idx];document.getElementById('sg-question').textContent=q[0];const opt=document.getElementById('sg-options');opt.innerHTML='';document.getElementById('sg-result').textContent='';q[1].forEach((o,i)=>{const b=document.createElement('button');b.textContent=o;b.className='btn';b.style.background='#1e3a5f';b.style.margin='5px';b.onclick=()=>{opt.querySelectorAll('button').forEach(x=>x.disabled=true);if(i===q[2]){addPoints(5);document.getElementById('sg-result').textContent='सही जवाब! +5 points 🎉'}else{document.getElementById('sg-result').textContent='गलत! सही उत्तर: '+q[1][q[2]]}const n=document.createElement('button');n.textContent='अगला सवाल';n.className='btn btn-purple';n.onclick=()=>{idx++;renderQ()};opt.append(n)};opt.append(b)})}
+document.getElementById('sg-class').addEventListener('change',renderQ);document.getElementById('sg-subject').addEventListener('change',renderQ);renderQ();
+function addPoints(p){points+=p;localStorage.setItem('sunilPoints',points);document.getElementById('totalPoints').textContent=points;document.getElementById('pPoints').textContent=points;document.getElementById('sg-points').textContent=points-1250;leaderboard[0].pts=points;renderLeader()}
+const today=()=>new Date().toISOString().slice(0,10);const yest=()=>{let d=new Date();d.setDate(d.getDate()-1);return d.toISOString().slice(0,10)};function showStreak(){document.getElementById('sg-streak').textContent='Streak: '+streak+' दिन';document.getElementById('homeStreak').textContent=streak+' days';document.getElementById('pStreak').textContent=streak;const b=document.getElementById('sg-study');b.disabled=last===today();if(b.disabled)b.textContent='आज दर्ज हो चुकी';}
+document.getElementById('sg-study').addEventListener('click',()=>{if(last===today())return;streak=last===yest()?streak+1:1;last=today();localStorage.setItem('sunilStreak',streak);localStorage.setItem('sunilLastStudy',last);showStreak();addPoints(10)});showStreak();
+document.getElementById('sg-ai-send').addEventListener('click',()=>{const q=document.getElementById('sg-ai-question').value.trim();document.getElementById('sg-ai-answer').textContent=q?'the_sunil29 AI Expert: "'+q+'" का जवाब - यह डेमो है, असली AI API जोड़ने पर तुरंत जवाब मिलेगा।':'पहले अपना सवाल लिखो।'})
+
+function startMaths(){const a=Math.floor(Math.random()*20)+1,b=Math.floor(Math.random()*20)+1,ans=a+b;document.getElementById('mathsQ').textContent=`What is ${a} + ${b} ?`;const o=document.getElementById('mathsOpt');o.innerHTML='';[ans,ans+2,ans-3].sort(()=>Math.random()-.5).forEach(v=>{const bt=document.createElement('button');bt.textContent=v;bt.className='btn';bt.style.background='#1e3a5f';bt.style.margin='5px';bt.onclick=()=>{if(v===ans){addPoints(10);document.getElementById('mathsQ').textContent='Correct! +10 points 🎉'}else{document.getElementById('mathsQ').textContent='Wrong! Answer was '+ans}};o.append(bt)})}
+function filterChat(t){renderChat();if(t==='groups')go('groups');if(t==='search')document.getElementById('chatSearch').focus()}
+function sendMsg(){const i=document.getElementById('msgInput');if(!i.value.trim())return;document.getElementById('fullChat').innerHTML+=`<div style="background:#1e3a5f;padding:8px;border-radius:10px;margin:5px 0">You: ${i.value}</div>`;i.value='';addPoints(2)}
+function createGroup(){const n=prompt('Group name?');if(n){document.getElementById('groupList').innerHTML+=`<div class="chat-item"><i class="fa-solid fa-users"></i> ${n} (1 member)</div>`;addPoints(5)}}
+document.getElementById('chatSearch').addEventListener('input',e=>{const q=e.target.value.toLowerCase();document.getElementById('chatList').innerHTML=friends.filter(f=>f.n.toLowerCase().includes(q)).map(f=>`<div class="chat-item"><img src="https://i.pravatar.cc/32?u=${f.n}" style="border-radius:50%"><div><b>${f.n}</b><div style="font-size:12px">${f.m}</div></div></div>`).join('')})
 </script>
 </body>
 </html>
