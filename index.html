@@ -46,19 +46,18 @@ input{padding:12px;border-radius:10px;border:1px solid #cbd5e1;width:90%;margin:
 </div>
 
 <div class="card">
-<h2>🔢 Matiks Jaisa Game</h2>
+<h2>🔢 Matiks </h2>
 <p>Target: <b id="target" style="font-size:26px;color:#4f46e5">0</b> | Score: <b id="mScore">0</b> | Time: <b id="mTime">60</b></p>
 <button class="btn" onclick="startMatiks()">Start Matiks</button>
 <div class="matiks-board" id="board"></div>
 <p id="mMsg"></p>
 </div>
 
-<script>
-// === YAHAN APNA FIREBASE CONFIG PASTE KARO ===
+<script
 const firebaseConfig = {
-  apiKey: "PASTE HERE",
-  authDomain: "PASTE HERE",
-  projectId: "PASTE HERE",
+  apiKey: "AlzaSyDPObZuwkajCO1TE_eSjCXvThZM7VOGFwY",
+  authDomain: "kumar-ravindra-study-hub.firebaseapp.com",
+  projectId: "kumar-ravindra-study-hub",
   storageBucket: "PASTE HERE",
   messagingSenderId: "PASTE HERE",
   appId: "PASTE HERE"
@@ -85,10 +84,7 @@ function sendPhoneOTP(){
     confirmationResult=res;
     document.getElementById('otpDiv').style.display='block';
     document.getElementById('loginMsg').textContent='✅ Real OTP bhej diya '+phone+' par! OTP dalo tabhi login hoga.';
-  }).catch(e=>{document.getElementById('loginMsg').textContent='❌ Error: '+e.message});
-}
-
-function verifyOTP(){
+  }).catch(e=>{document.getElementById('loginMsg'n verifyOTP(){
   let code=document.getElementById('otp').value.trim();
   if(!confirmationResult){document.getElementById('loginMsg').textContent='Pahle Send OTP dabao';return}
   // YAHI MAIN POINT HAI - BINA SAHI OTP KE LOGIN HOGA HI NAHI
