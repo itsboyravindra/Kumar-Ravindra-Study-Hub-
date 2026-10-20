@@ -1,158 +1,131 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kumar Ravindra Study Hub</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Kumar Ravindra Hub - Real OTP</title>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
 <style>
-body{margin:0;font-family:Arial;background:#eef2ff;color:#222;text-align:center}
-#topBar{background:#0a1930;color:white;padding:12px 15px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
-#topBar b{font-size:18px}
-header{background:#173b75;color:white;padding:20px}
-nav{background:#102b55;padding:12px;position:sticky;top:52px;z-index:99}
-nav a{color:white;margin:6px;padding:8px 12px;border-radius:8px;cursor:pointer;text-decoration:none;display:inline-block;background:#1a3a6b}
-nav a.active,nav a:hover{background:#2a7bff}
-main{padding:15px}
-.card{background:white;padding:18px;margin:15px auto;max-width:620px;border-radius:14px;box-shadow:0 4px 12px #c2c9d6;text-align:left}
-.card h2{text-align:center}
-button{background:#1769ff;color:white;border:0;padding:10px 16px;border-radius:8px;cursor:pointer;margin:5px}
-input,select{padding:10px;border-radius:8px;border:1px solid #ccc;margin:5px}
-.leader-row{display:flex;justify-content:space-between;padding:9px 12px;border-radius:8px;margin:4px 0;background:#f8fafc;border:1px solid #e2e8f0}
-.leader-row.top1{background:linear-gradient(90deg,#fef3c7,#fde68a);border:1px solid #f59e0b;font-weight:bold}
-.rareBox{padding:12px;border-radius:10px;text-align:center;margin-top:10px}
-footer{background:#173b75;color:white;padding:15px}
+body{margin:0;font-family:Arial;background:#f1f5f9}
+#top{background:#0f172a;color:white;padding:12px;display:flex;justify-content:space-between;position:sticky;top:0}
+.card{background:white;max-width:700px;margin:14px auto;padding:16px;border-radius:16px;box-shadow:0 2px 8px #0001}
+.btn{background:#4f46e5;color:white;border:0;padding:10px 16px;border-radius:10px;cursor:pointer;font-weight:600}
+input{padding:12px;border-radius:10px;border:1px solid #cbd5e1;width:90%;margin:6px 0}
+.tabs{display:flex;gap:8px}
+.tabs button{padding:6px 12px;border-radius:20px;border:1px solid #cbd5e1;background:white;cursor:pointer}
+.tabs button.active{background:#4f46e5;color:white}
+.matiks-board{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.matiks-card{background:#e0e7ff;border:2px solid #6366f1;padding:20px;text-align:center;border-radius:14px;font-size:20px;font-weight:bold;cursor:pointer}
 </style>
 </head>
 <body>
+<div id="top"><b id="welcome">Welcome, Guest!</b><span>🪙 <span id="coins">0</span></span></div>
 
-<div id="topBar">
-<b id="welcomeName">Welcome, Guest! 👋</b>
-<span>⭐ <span id="topPoints">0</span> pts | <span id="topStreak">0</span> day streak</span>
+<div class="card">
+<h2>🔐 Real Login - Phone / Email OTP</h2>
+<div class="tabs"><button class="active" id="tabPhone" onclick="switchTab('phone')">Phone OTP</button><button id="tabEmail" onclick="switchTab('email')">Email OTP</button></div>
+
+<div id="phoneDiv">
+<input id="phone" placeholder="+91 9876543210">
+<div id="recaptcha"></div>
+<button class="btn" onclick="sendPhoneOTP()">Send Real OTP</button>
 </div>
 
-<header>
-<h1>Kumar Ravindra Study Hub</h1>
-<p>पढ़ाई करो • खेलो • आगे बढ़ो</p>
-</header>
+<div id="emailDiv" style="display:none">
+<input id="email" placeholder="email@gmail.com">
+<button class="btn" onclick="sendEmailOTP()">Send Email Link</button>
+<p style="font-size:12px">Email par link jayega, us par click karke login hoga</p>
+</div>
 
-<nav>
-<a onclick="goTo('notes')" id="nav-notes" class="active">📚 Notes</a>
-<a onclick="goTo('games')" id="nav-games">🎮 Games</a>
-<a onclick="goTo('leaderboard')" id="nav-leaderboard">🏆 Top 14</a>
-<a onclick="goTo('login')" id="nav-login">🔐 Login</a>
-<a onclick="goTo('sunil-study')" id="nav-sunil-study">🔬 Science</a>
-</nav>
+<div id="otpDiv" style="display:none">
+<input id="otp" placeholder="6 digit OTP">
+<button class="btn" onclick="verifyOTP()">Verify OTP - Tabhi Login Hoga</button>
+</div>
 
-<main>
-<section class="card" id="notes"><h2>📚 Study Notes</h2><p>Class 10,11,12 ke notes yahan milenge.</p><button onclick="addP(5)">Read Notes +5 Points</button></section>
+<p id="loginMsg" style="font-weight:bold"></p>
+</div>
 
-<section class="card" id="games"><h2>🎮 Maths Game</h2><p id="mathQ">Play Games dabao</p><div id="mathO"></div><button onclick="startMath()">Play Games</button></section>
-
-<section class="card" id="leaderboard">
-<h2>🏆 Live Leaderboard - <span id="weekLabel"></span></h2>
-<p style="text-align:center;font-size:13px;color:#64748b">Har 7 din me badlegi | Top 14 | Top 1 ko Rare Book</p>
-<div id="lb"></div>
-<div id="rareBookBox" class="rareBox"></div>
-<p style="text-align:center;font-size:12px;margin-top:10px">Next Update: <b id="nextUpdate"></b></p>
-</section>
-
-<section class="card" id="login">
-<h2>🔐 Student Login</h2>
-<input id="uname" placeholder="Apna naam likho" style="width:90%">
-<button onclick="login()">Login</button>
-<p id="loginMsg" style="font-weight:bold;color:green"></p>
-</section>
-
-<section class="card" id="sunil-study">
-<h2>🔬 Science Game - the_sunil29</h2>
-<label>कक्षा: <select id="sg-class"><option value="10">10वीं</option><option value="11">11वीं</option><option value="12">12वीं</option></select></label>
-<label>विषय: <select id="sg-subject"><option>Physics</option><option>Chemistry</option><option>Biology</option></select></label>
-<p id="sg-question" style="font-weight:bold;margin-top:10px"></p>
-<div id="sg-options"></div>
-<p id="sg-result" style="font-weight:bold"></p>
-<p>⭐ Points: <b id="sg-points">0</b></p>
-<hr>
-<h2>🔥 Daily Streak</h2>
-<button id="sg-study">आज पढ़ाई पूरी की</button>
-<p id="sg-streak">Streak: 0 दिन</p>
-<hr>
-<h2>🤖 AI Expert</h2>
-<input id="sg-ai-question" placeholder="अपना सवाल लिखो" style="width:90%">
-<button id="sg-ai-send">सवाल पूछें</button>
-<p id="sg-ai-answer"></p>
-</section>
-</main>
-
-<footer>© 2026 Kumar Ravindra Study Hub</footer>
+<div class="card">
+<h2>🔢 Matiks Jaisa Game</h2>
+<p>Target: <b id="target" style="font-size:26px;color:#4f46e5">0</b> | Score: <b id="mScore">0</b> | Time: <b id="mTime">60</b></p>
+<button class="btn" onclick="startMatiks()">Start Matiks</button>
+<div class="matiks-board" id="board"></div>
+<p id="mMsg"></p>
+</div>
 
 <script>
-// --- ICONS WORK ---
-function goTo(id){
-  document.getElementById(id).scrollIntoView({behavior:'smooth'});
-  document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
-  document.getElementById('nav-'+id).classList.add('active');
+// === YAHAN APNA FIREBASE CONFIG PASTE KARO ===
+const firebaseConfig = {
+  apiKey: "PASTE HERE",
+  authDomain: "PASTE HERE",
+  projectId: "PASTE HERE",
+  storageBucket: "PASTE HERE",
+  messagingSenderId: "PASTE HERE",
+  appId: "PASTE HERE"
+};
+
+firebase.initializeApp(firebaseConfig);
+let recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha', {size:'normal'});
+let confirmationResult=null;
+
+let coins=Number(localStorage.getItem('sunilCoins')||0);
+document.getElementById('coins').textContent=coins;
+
+function switchTab(t){
+  document.getElementById('phoneDiv').style.display=t==='phone'?'block':'none';
+  document.getElementById('emailDiv').style.display=t==='email'?'block':'none';
+  document.getElementById('tabPhone').classList.toggle('active',t==='phone');
+  document.getElementById('tabEmail').classList.toggle('active',t==='email');
 }
 
-// --- USER NAME SYSTEM ---
-let userName = localStorage.getItem('sunilName') || 'Guest';
-let points = Number(localStorage.getItem('sunilPoints')||0);
-let streak = Number(localStorage.getItem('sunilStreak')||0);
-let last = localStorage.getItem('sunilLastStudy')||'';
-
-function updateTop(){
-  document.getElementById('welcomeName').textContent = userName==='Guest' ? 'Welcome, Guest! 👋 Login karo' : 'Welcome, ' + userName + '! 👋';
-  document.getElementById('topPoints').textContent = points;
-  document.getElementById('topStreak').textContent = streak;
-  document.getElementById('sg-points').textContent = points;
-  document.getElementById('sg-streak').textContent = 'Streak: '+streak+' दिन';
-}
-function addP(n){points+=n;localStorage.setItem('sunilPoints',points);updateTop();renderLeaderboard()}
-function login(){
-  let n=document.getElementById('uname').value.trim();
-  if(!n){document.getElementById('loginMsg').textContent='Naam likho';return}
-  userName=n;localStorage.setItem('sunilName',n);
-  updateTop();renderLeaderboard();
-  document.getElementById('loginMsg').textContent='Welcome '+n+'! Login Success 🎉 +5 Points';
-  addP(5);
+function sendPhoneOTP(){
+  let phone=document.getElementById('phone').value.trim();
+  if(!phone.startsWith('+')){document.getElementById('loginMsg').textContent='Number +91 ke saath likho: +9198xxxxxxx';return}
+  firebase.auth().signInWithPhoneNumber(phone, recaptchaVerifier).then(res=>{
+    confirmationResult=res;
+    document.getElementById('otpDiv').style.display='block';
+    document.getElementById('loginMsg').textContent='✅ Real OTP bhej diya '+phone+' par! OTP dalo tabhi login hoga.';
+  }).catch(e=>{document.getElementById('loginMsg').textContent='❌ Error: '+e.message});
 }
 
-// --- LEADERBOARD 7 DAYS TOP 14 RARE BOOK ---
-const allStudents=["Aman","Priya","Rohit","Sneha","Sahil","Neha","Akash","Anjali","Vikas","Pooja","Rahul","Simran","Deepak","Kavita","Arjun","Isha","Manish","Ritu","Sunil","Kumar","Ravindra"];
-const rareBooks=["Advanced Mathematics","Ancient History Secrets","Quantum Science","Topper Brain Book","ISRO Science Book","English Rare Grammar"];
-function getWeek(){let s=new Date('2026-01-01'),n=new Date();return Math.floor((n-s)/(1000*60*60*24*7))}
-function renderLeaderboard(){
-  let week=getWeek();
-  let list=[...allStudents].sort(()=>0.5-Math.random()).slice(0,13);
-  if(!list.includes(userName) && userName!=='Guest') list.unshift(userName);
-  list=list.slice(0,14);
-  let lb=document.getElementById('lb');lb.innerHTML='';
-  list.forEach((name,i)=>{
-    let pts=name===userName?points:Math.floor(1300-i*70+Math.random()*40);
-    let row=document.createElement('div');row.className='leader-row'+(i===0?' top1':'');
-    let medal=i===0?'🥇':i===1?'🥈':i===2?'🥉':(i+1)+'.';
-    row.innerHTML=`<span>${medal} ${name} ${i===0?'👑 TOP 1':''}</span><span>${pts} pts</span>`;
-    lb.appendChild(row);
+function verifyOTP(){
+  let code=document.getElementById('otp').value.trim();
+  if(!confirmationResult){document.getElementById('loginMsg').textContent='Pahle Send OTP dabao';return}
+  // YAHI MAIN POINT HAI - BINA SAHI OTP KE LOGIN HOGA HI NAHI
+  confirmationResult.confirm(code).then(result=>{
+    let user=result.user;
+    localStorage.setItem('sunilName', user.phoneNumber);
+    document.getElementById('welcome').textContent='Welcome, '+user.phoneNumber+' ✅';
+    document.getElementById('loginMsg').textContent='🎉 Real OTP Verified! Login Success. Bina OTP ke login nahi hota.';
+    coins+=10; localStorage.setItem('sunilCoins',coins); document.getElementById('coins').textContent=coins;
+  }).catch(e=>{
+    document.getElementById('loginMsg').textContent='❌ Galat OTP! Login nahi hoga. Error: '+e.message;
   });
-  document.getElementById('weekLabel').textContent='Week '+(week+1);
-  let rare=rareBooks[week%rareBooks.length];
-  let isTop1=list[0]===userName;
-  document.getElementById('rareBookBox').style.background=isTop1?'#dcfce7':'#fef3c7';
-  document.getElementById('rareBookBox').style.border=isTop1?'1px solid #22c55e':'1px solid #f59e0b';
-  document.getElementById('rareBookBox').innerHTML=isTop1?`🎉 Badhai ho! Tum TOP 1 ho!<br>📘 <b>Rare Book Unlocked: ${rare}</b><br><button onclick="alert('Opening ${rare}')">Open Book 📖</button>`:`📕 Current Rare Book: <b>${rare}</b><br>Top 1 bano aur unlock karo! Tumhari Rank: #${list.indexOf(userName)+1}<br><span style="opacity:0.6">🔒 Locked</span>`;
-  let next=new Date();next.setDate(next.getDate()+(7-(Math.floor((new Date()-new Date('2026-01-01'))/(1000*60*60*24))%7)));
-  document.getElementById('nextUpdate').textContent=next.toDateString();
 }
 
-// --- GAMES ---
-function startMath(){let a=Math.floor(Math.random()*20+1),b=Math.floor(Math.random()*20+1),ans=a+b;document.getElementById('mathQ').textContent=a+" + "+b+" = ?";let o=document.getElementById('mathO');o.innerHTML='';[ans,ans+2,ans+5].sort(()=>Math.random()-.5).forEach(v=>{let bt=document.createElement('button');bt.textContent=v;bt.onclick=()=>{if(v==ans){addP(10);document.getElementById('mathQ').textContent='Sahi! +10 🎉'}else{document.getElementById('mathQ').textContent='Galat! Answer tha '+ans}};o.append(bt)})}
-const bank={'10|Physics':[['बल की SI इकाई क्या है?', ['जूल','न्यूटन','वाट'],1]],'10|Chemistry':[['पानी का सूत्र?', ['CO₂','H₂O','O₂'],1]],'10|Biology':[['प्रकाश संश्लेषण में गैस?', ['O₂','N₂','CO₂'],2]],'11|Physics':[['बल की इकाई?', ['जूल','न्यूटन','वाट'],1]],'11|Chemistry':[['परमाणु केंद्र?', ['नाभिक','कक्षा','आयन'],0]],'11|Biology':[['ऊर्जा गृह?', ['राइबोसोम','माइटोकॉन्ड्रिया','नाभिक'],1]],'12|Physics':[['धारा की इकाई?', ['वोल्ट','ओम','एम्पियर'],2]],'12|Chemistry':[['pH 7?', ['अम्लीय','उदासीन','क्षारीय'],1]],'12|Biology':[['DNA?', ['डीऑक्सीराइबो','अमीनो','फैटी'],0]]};
-let idx=0;function renderQ(){let list=bank[document.getElementById('sg-class').value+'|'+document.getElementById('sg-subject').value]||[];if(!list.length)return;idx=idx%list.length;let q=list[idx];document.getElementById('sg-question').textContent=q[0];let opt=document.getElementById('sg-options');opt.innerHTML='';document.getElementById('sg-result').textContent='';q[1].forEach((o,i)=>{let b=document.createElement('button');b.textContent=o;b.style.display='block';b.style.width='100%';b.style.margin='6px 0';b.onclick=()=>{opt.querySelectorAll('button').forEach(x=>x.disabled=true);if(i==q[2]){addP(5);document.getElementById('sg-result').textContent='सही! +5'}else{document.getElementById('sg-result').textContent='गलत! सही: '+q[1][q[2]]}let n=document.createElement('button');n.textContent='अगला सवाल';n.onclick=()=>{idx++;renderQ()};opt.append(n)};opt.append(b)})}
-document.getElementById('sg-class').addEventListener('change',renderQ);document.getElementById('sg-subject').addEventListener('change',renderQ);
-const today=()=>new Date().toISOString().slice(0,10);const yest=()=>{let d=new Date();d.setDate(d.getDate()-1);return d.toISOString().slice(0,10)};function showStreak(){let b=document.getElementById('sg-study');b.disabled=last==today();if(b.disabled)b.textContent='आज दर्ज हो चुकी'}document.getElementById('sg-study').addEventListener('click',()=>{if(last==today())return;streak=last==yest()?streak+1:1;last=today();localStorage.setItem('sunilStreak',streak);localStorage.setItem('sunilLastStudy',last);showStreak();updateTop();addP(10)});
-document.getElementById('sg-ai-send').addEventListener('click',()=>{let q=document.getElementById('sg-ai-question').value.trim();document.getElementById('sg-ai-answer').textContent=q?'the_sunil29 AI: '+q+' - Demo जवाब':'पहले सवाल लिखो'});
+function sendEmailOTP(){
+  let email=document.getElementById('email').value.trim();
+  let actionCodeSettings={url: window.location.href, handleCodeInApp:true};
+  firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings).then(()=>{
+    localStorage.setItem('emailForSignIn',email);
+    document.getElementById('loginMsg').textContent='✅ Email par link bhej diya! Email khol ke link par click karo tabhi login hoga.';
+  }).catch(e=>{document.getElementById('loginMsg').textContent='Error: '+e.message});
+}
 
-// INIT
-updateTop();renderLeaderboard();renderQ();showStreak();
+// Email link se login check
+if(firebase.auth().isSignInWithEmailLink(window.location.href)){
+  let email=localStorage.getItem('emailForSignIn')||prompt('Apna email likho');
+  firebase.auth().signInWithEmailLink(email, window.location.href).then(result=>{
+    localStorage.setItem('sunilName',result.user.email);
+    document.getElementById('welcome').textContent='Welcome, '+result.user.email;
+    document.getElementById('loginMsg').textContent='Email OTP Verified! Login Success';
+  });
+}
+
+// Matiks Game
+let target=0,mScore=0,mTimeLeft=60,timer=null,selected=[],nums=[];
+function startMatiks(){mScore=0;mTimeLeft=60;document.getElementById('mScore').textContent=0;nextRound();clearInterval(timer);timer=setInterval(()=>{mTimeLeft--;document.getElementById('mTime').textContent=mTimeLeft;if(mTimeLeft<=0){clearInterval(timer);document.getElementById('mMsg').textContent='Game Over! Score: '+mScore;coins+=mScore;localStorage.setItem('sunilCoins',coins);document.getElementById('coins').textContent=coins}},1000)}
+function nextRound(){target=Math.floor(Math.random()*20+10);document.getElementById('target').textContent=target;let board=document.getElementById('board');board.innerHTML='';selected=[];let a=Math.floor(Math.random()*10+1),b=target-a;nums=[a,b];for(let i=0;i<7;i++) nums.push(Math.floor(Math.random()*20+1));nums.sort(()=>Math.random()-0.5);nums.forEach((n,i)=>{let d=document.createElement('div');d.className='matiks-card';d.textContent=n;d.onclick=()=>{if(selected.includes(i)) return;selected.push(i);d.style.opacity='0.5';let sum=selected.reduce((s,idx)=>s+nums[idx],0);if(sum===target){mScore+=10;document.getElementById('mScore').textContent=mScore;document.getElementById('mMsg').textContent='✅ Sahi! +10';setTimeout(nextRound,400)}else if(sum>target){document.getElementById('mMsg').textContent='❌ Jyada ho gaya';selected=[];document.querySelectorAll('.matiks-card').forEach(c=>c.style.opacity='1')}};board.append(d)});document.getElementById('mMsg').textContent='2 numbers se '+target+' banao - Matiks Style!'}
 </script>
 </body>
 </html>
